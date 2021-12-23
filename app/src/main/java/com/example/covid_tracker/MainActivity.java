@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tvTodayCases = findViewById(R.id.tvTodayCases);
         tvTotalDeaths = findViewById(R.id.tvTotalDeaths);
         tvTodayDeaths = findViewById(R.id.tvTodayDeaths);
-        tvAffectedCountries = findViewById(R.id.tvAffectedCountries);
+//        tvAffectedCountries = findViewById(R.id.tvAffectedCountries);
 
         simpleArcLoader = findViewById(R.id.loader);
         scrollView = findViewById(R.id.scrollStats);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         String url  = "https://corona.lmao.ninja/v2/all/";
 
-        simpleArcLoader.start();
+//        simpleArcLoader.start();
 
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -74,17 +74,15 @@ public class MainActivity extends AppCompatActivity {
                             tvTodayCases.setText(jsonObject.getString("todayCases"));
                             tvTotalDeaths.setText(jsonObject.getString("deaths"));
                             tvTodayDeaths.setText(jsonObject.getString("todayDeaths"));
-                            tvAffectedCountries.setText(jsonObject.getString("affectedCountries"));
+//                            tvAffectedCountries.setText(jsonObject.getString("affectedCountries"));
 
-
-                            pieChart.addPieSlice(new PieModel("Cases",Integer.parseInt(tvCases.getText().toString()), Color.parseColor("#FFA726")));
-                            pieChart.addPieSlice(new PieModel("Recoverd",Integer.parseInt(tvRecovered.getText().toString()), Color.parseColor("#66BB6A")));
-                            pieChart.addPieSlice(new PieModel("Deaths",Integer.parseInt(tvTotalDeaths.getText().toString()), Color.parseColor("#EF5350")));
-                            pieChart.addPieSlice(new PieModel("Active",Integer.parseInt(tvActive.getText().toString()), Color.parseColor("#29B6F6")));
+                            pieChart.addPieSlice(new PieModel("Recovered",Integer.parseInt(tvRecovered.getText().toString()), Color.parseColor("#68D357")));
+                            pieChart.addPieSlice(new PieModel("Deaths",Integer.parseInt(tvTotalDeaths.getText().toString()), Color.parseColor("#E97A59")));
+                            pieChart.addPieSlice(new PieModel("Active",Integer.parseInt(tvActive.getText().toString()), Color.parseColor("#4AA5F4")));
                             pieChart.startAnimation();
 
-                            simpleArcLoader.stop();
-                            simpleArcLoader.setVisibility(View.GONE);
+//                            simpleArcLoader.stop();
+//                            simpleArcLoader.setVisibility(View.GONE);
                             scrollView.setVisibility(View.VISIBLE);
 
 
@@ -92,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            simpleArcLoader.stop();
-                            simpleArcLoader.setVisibility(View.GONE);
+//                            simpleArcLoader.stop();
+//                            simpleArcLoader.setVisibility(View.GONE);
                             scrollView.setVisibility(View.VISIBLE);
                         }
 
@@ -102,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                simpleArcLoader.stop();
-                simpleArcLoader.setVisibility(View.GONE);
+//                simpleArcLoader.stop();
+//                simpleArcLoader.setVisibility(View.GONE);
                 scrollView.setVisibility(View.VISIBLE);
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
